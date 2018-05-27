@@ -30,3 +30,16 @@ variable chef_key_name {
 variable chef_allowed_ips  {
   default = "0.0.0.0/0"
 }
+
+variable domain {
+  description = "chef server domain"
+}
+
+variable host {
+  description = "chef server host name"
+  default = "chef"
+}
+
+variable mackerel_apikey {
+  default = ""
+}

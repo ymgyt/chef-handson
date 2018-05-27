@@ -7,49 +7,76 @@ pre requirements
 ================
 
 - AWS
+
   - IAM User with Admin permission
   - SSH key pair
+  - Route 53 zone(domain)
 
+- direnv(optional) <https://github.com/direnv/direnv>
 - terraform <https://github.com/hashicorp/terraform>
+- chefdk <https://downloads.chef.io/chefdk>
 
 
 quick start
 ===========
 
+0. setup ``.envrc``
+
+we setup configuration by environment variables.
+
+.. code-block:: bash
+
+   cp .envrc.template .envrc
+   # edit .envrc
+   direnv allow
 
 1. set up aws resource
-
-terraform/variable.tf describes configuration variables. if you create ``terraform/terraform.tfvars`` ,terraform automatically loads them to populate variables.
-
-terraform/terraform.tfvars
-
-.. code-block:: text
-
-   access_key = "your access key id"
-   secret_key = "your secret key"
-   chef_key_name = "your aws ssh key pair name"
+----------------------
 
 .. code-block:: bash
 
    cd terrafrom
    terraform init
    terraform apply
-   ssh -i <path/to/identify> ubuntu@$(terraform output chef-ip) 
+   ssh -i <path/to/identity> ubuntu@<host>
 
 
-2. install chef
-
-.. code-block:: bash
-
-   curl -O https://packages.chef.io/files/stable/chef-server/12.17.33/ubuntu/14.04/chef-server-core_12.17.33-1_amd64.deb
-   sudo dpkg -i chef-server-core_12.17.33-1_amd64.deb
-
-
-3. configure chef server
+2. configure chef server
+------------------------
 
 .. code-block:: bash
 
-   sudo bash -c "echo 127.0.0.1 $(hostname) >> /etc/hosts"
    sudo chef-server-ctl reconfigure
    sudo chef-server-ctl status                
-   
+
+                
+3. create user and organization
+-------------------------------
+
+.. code-block:: bash
+
+   sudo chef-server-ctl user-create ymgyt yuta yamaguchi <your_email> <password> --filename <secret_name>
+   sudo chef-server-ctl org-create ygtio ygt.io --association_user ymgyt --filename ygtio-validator.pem
+
+                
+4. configure workstation
+------------------------
+
+.. code-block::
+
+   # fetch user and org pem files which we created at step 3 to <chef-handson>/.chef/ by scp or like that
+   knife ssl fetch
+   knife client list
+
+
+trouble shoot
+=============
+
+reconfigure chef server
+-----------------------
+
+.. code-block:: bash
+
+   sudo chef-server-ctl cleanse
+   sudo chef-server-ctl reconfigure                
+                   

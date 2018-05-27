@@ -1,3 +1,3 @@
-output "chef-ip" {
-  value = "${aws_instance.chef.public_ip}"
+output "chef" {
+  value = "${aws_route53_record.chef.fqdn}"
 }

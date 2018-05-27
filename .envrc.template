@@ -1,0 +1,17 @@
+export AWS_ACCESS_KEY=""
+export AWS_SECRET_KEY=""
+
+export CHEF_DOMAIN=""
+export CHEF_HOST=""
+export CHEF_SERVER_URL="https://${CHEF_HOST}.${CHEF_DOMAIN}"
+export CHEF_USER=""
+export CHEF_USER_KEY="${CHEF_USER}.pem"
+export CHEF_ORG=""
+export CHEF_ORG_KEY="${CHEF_ORG}-validator.pem"
+
+export TF_VAR_access_key="${AWS_ACCESS_KEY}"
+export TF_VAR_secret_key="${AWS_SECRET_KEY}"
+export TF_VAR_chef_key_name=""
+export TF_VAR_domain="${CHEF_DOMAIN}"
+export TF_VAR_host="${CHEF_HOST}"
+export TF_VAR_mackerel_apikey=""
