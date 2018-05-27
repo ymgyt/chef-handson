@@ -80,3 +80,8 @@ reconfigure chef server
    sudo chef-server-ctl cleanse
    sudo chef-server-ctl reconfigure                
                    
+
+references
+==========
+
+- DigitalOcean How to Set Up a Chef 12 Configuration on Ubuntu 14.04 <https://www.digitalocean.com/community/tutorials/how-to-set-up-a-chef-12-configuration-management-system-on-ubuntu-14-04-servers>
