@@ -21,6 +21,8 @@ quick start
 ===========
 
 0. setup ``.envrc``
+-------------------
+
 
 we setup configuration by environment variables.
 

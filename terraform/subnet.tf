@@ -1,7 +1,7 @@
 resource "aws_subnet" "1" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "ap-northeast-1a"
-  cidr_block = "${var.cidr_prefix}.1.0/24"
+  cidr_block        = "${var.cidr_prefix}.1.0/24"
 
   tags = {
     Name = "${var.project}"
@@ -9,9 +9,9 @@ resource "aws_subnet" "1" {
 }
 
 resource "aws_subnet" "2" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "ap-northeast-1c"
-  cidr_block = "${var.cidr_prefix}.2.0/24"
+  cidr_block        = "${var.cidr_prefix}.2.0/24"
 
   tags = {
     Name = "${var.project}"
