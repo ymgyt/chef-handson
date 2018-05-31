@@ -3,3 +3,4 @@ terraform.*
 .chef/
 !.chef/knife.rb
 vendor/
+cookbooks/

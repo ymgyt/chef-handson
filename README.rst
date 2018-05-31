@@ -71,6 +71,21 @@ we setup configuration by environment variables.
    knife client list
 
 
+configure node
+==============
+
+.. code-block:: bash
+
+   # create role
+   knife role create -d postgresql_server
+   knife role edit postgresql_server # add postgresql::server to run_list
+   knife role show postgresql_server
+   knife role list                
+
+   # install cookbooks
+   berks vendor cookbooks
+   knife cookbook upload --cookbook-path cookbooks --all                
+
 trouble shoot
 =============
 
